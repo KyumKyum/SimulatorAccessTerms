@@ -20,6 +20,8 @@ public class SecondTerm extends AppCompatActivity implements View.OnClickListene
     private Boolean agree1, agree2;
     private Boolean buttonAvailable;
 
+    private Toast mToast;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,9 @@ public class SecondTerm extends AppCompatActivity implements View.OnClickListene
         switch (id){
             case R.id.button_next:
                 if(!buttonAvailable){
-                    Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT).show();
+                    if (mToast != null) mToast.cancel();
+                    mToast = Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT);
+                    mToast.show();
                 } else{
                     Intent intent = new Intent(this,SecondActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

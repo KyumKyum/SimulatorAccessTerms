@@ -19,6 +19,7 @@ public class FirstTerm extends AppCompatActivity implements View.OnClickListener
 
     private Boolean agree1, agree2;
     private Boolean buttonAvailable;
+    private Toast mToast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,16 +51,18 @@ public class FirstTerm extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         int id = v.getId();
 
-        switch (id){
+        switch (id) {
             case R.id.button_next:
-                if(!buttonAvailable){
-                        Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Intent intent = new Intent (this,SecondTerm.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        startActivity(intent);
+                if (!buttonAvailable) {
+                    if (mToast != null) mToast.cancel();
+                    mToast = Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT);
+                    mToast.show();
+                } else {
+                    Intent intent = new Intent(this, SecondTerm.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intent);
 
-                    overridePendingTransition(R.anim.fadein,R.anim.fadeout);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }
                 break;
 
