@@ -17,7 +17,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FirstTerm"/>
+        <activity android:name=".FirstTerm"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".SecondTerm"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".SecondActivity"/>
+
     </application>
 
 </manifest>

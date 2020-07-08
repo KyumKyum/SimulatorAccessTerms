@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FirstTerm extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class SecondTerm extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private RadioButton buttonYesOne, buttonNoOne, buttonYesTwo, buttonNoTwo;
     private RadioGroup group1, group2;
@@ -23,7 +23,7 @@ public class FirstTerm extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.terms);
+        setContentView(R.layout.terms2);
 
         buttonYesOne = findViewById(R.id.button_yes_term1);
         buttonYesTwo = findViewById(R.id.button_yes_term2);
@@ -53,18 +53,22 @@ public class FirstTerm extends AppCompatActivity implements View.OnClickListener
         switch (id){
             case R.id.button_next:
                 if(!buttonAvailable){
-                        Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Intent intent = new Intent (this,SecondTerm.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        startActivity(intent);
+                    Toast.makeText(this, "모든 약관에 동의해야합니다!", Toast.LENGTH_SHORT).show();
+                } else{
+                    Intent intent = new Intent(this,SecondActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intent);
 
-                    overridePendingTransition(R.anim.fadein,R.anim.fadeout);
+                    Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
             case R.id.button_cancel:
-                finish();
+                Intent intent = new Intent(this, FirstTerm.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         }
     }
 
